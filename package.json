@@ -1,0 +1,31 @@
+{
+  "name": "tworklogger",
+  "version": "0.0.1",
+  "description": "Make your life easier with tworklogger. Start your work, add title and you are good to go. When you are done, just stop your work and it will be automaticly added to conf table.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "twork": "index.js"
+  },
+  "keywords": [
+    "tasker",
+    "jira",
+    "time",
+    "logger",
+    "manager",
+    "exel",
+    "worklog"
+  ],
+  "author": "Nienormalny (Dawid Szadurski)",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.2.0",
+    "cli-table3": "^0.6.3",
+    "commander": "^10.0.0",
+    "conf": "^11.0.1",
+    "excel4node": "^1.8.0"
+  }
+}
