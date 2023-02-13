@@ -23,7 +23,7 @@ Simple small app that will start my task and end my task with possiblity to prin
 ## Feature updates
 - Show summary of logged times.
 - Add row with date before, current logged time.
-- Wyport table to excel file
+- Export table to excel file
 - Remove only defined task
 
 and more ...
