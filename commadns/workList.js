@@ -1,6 +1,7 @@
 import Conf from 'conf';
 import chalk from 'chalk';
 import Table from 'cli-table3';
+import { hmsToSeconds, secondsToHms } from '../utils/converters.js';
 
 export const getAll = () => {
     const config = new Conf({projectName: 'tasker'});
@@ -28,7 +29,8 @@ export const getAll = () => {
          * }
          */
         const sortedArr = workList.reduce((prev, curr) => {
-            (prev[curr.createdAt] = prev[curr.createdAt] || []).push(curr);
+            const currDate = new Date(curr.createdAt).toLocaleDateString('de-DE');
+            (prev[currDate] = prev[currDate] || []).push(curr);
             return prev;
         }, {});
 
@@ -43,11 +45,17 @@ export const getAll = () => {
                  * @description first let us add row with date to the table - when was all tasks created.
                  * Then under date row, let us add all tasks regarding to above mentioned date to the table as well.
                  */
-                if (index === 0) {
-                    table.push([{colSpan: 4, content: new Date(date).toLocaleDateString("de-DE"), hAlign: "center"}]);
+                if (index == 0) {
+                    table.push([{colSpan: 4, content: date, hAlign: "center"}]);
                 }
-                works.forEach((task, index) => {
+                let summary = 0; // in seconds
+                works.forEach((task, i) => {
                     table.push([task.title, task.started, task.stopped, task.difference]);
+                    summary += parseInt(hmsToSeconds(task.difference));
+                    if (i === (works.length - 1)) {
+                        const summatyObj = secondsToHms(summary);
+                        table.push([{colSpan: 3, content: 'Summary', hAlign: 'center'}, `${summatyObj.hours}:${summatyObj.minutes}:${summatyObj.seconds}`]);
+                    };
                 })
             });
         }
@@ -65,15 +73,20 @@ export const getToday = () => {
     });
 
     if (workList && workList.length) {
+        let summary = 0;
         workList.forEach((task, index) => {
             const taskDate = new Date(task.createdAt).toLocaleDateString("de-DE");
             const currentDate = new Date().toLocaleDateString("de-DE");
-            
             if (index === 0) {
                 table.push([{colSpan: 4, content: new Date().toLocaleDateString("de-DE"), hAlign: "center"}])
             }
             if ( taskDate === currentDate) {
+                summary += parseInt(hmsToSeconds(task.difference));
                 table.push([task.title, task.started, task.stopped, task.difference]);
+                if (index === (workList.length - 1)) {
+                    const summatyObj = secondsToHms(summary);
+                    table.push([{colSpan: 3, content: 'Summary', hAlign: 'center'}, `${summatyObj.hours}:${summatyObj.minutes}:${summatyObj.seconds}`]);
+                };
             }
         });
         console.log(table.toString());
