@@ -26,12 +26,11 @@ Simple small app that will start my task and end my task with possiblity to prin
 3. `twork show-all` - this command will print table with all tasks, that you started.
 4. `twork show-today` - this command will print table with tasks logged today.
 
-5. `twork reset-all` - this will remove all data from tables.
+5. `twork dekete <id>` - this command will delete your logged task, based on his id.
+6. `twork reset-all` - this will remove all data from tables.
 
 ## Feature updates
 
-- Show summary of logged times.
 - Export table to excel file
-- Remove only defined task
 
 and more ...
