@@ -1,4 +1,4 @@
-# tworklog
+# ⏱️ Twork
 
 This is your terminal work time logger.
 I decided to write something simple to log my time.
