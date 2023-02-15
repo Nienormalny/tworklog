@@ -27,5 +27,9 @@
     "commander": "^10.0.0",
     "conf": "^11.0.1",
     "excel4node": "^1.8.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Nienormalny/tworklog.git"
   }
 }
