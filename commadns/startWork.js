@@ -29,6 +29,7 @@ const startWork = (title) => {
             id: workList.length,
             title,
             done: false,
+            createdAt: new Date(),
             started: new Date().toLocaleTimeString('de-DE', {
                 hour: '2-digit',
                 minute: '2-digit',
