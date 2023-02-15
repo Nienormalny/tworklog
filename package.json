@@ -1,6 +1,6 @@
 {
   "name": "tworklogger",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Make your life easier with tworklogger. Start your work, add title and you are good to go. When you are done, just stop your work and it will be automaticly added to conf table.",
   "main": "index.js",
   "type": "module",
