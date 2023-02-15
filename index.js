@@ -1,10 +1,10 @@
 #! /usr/bin/env node
 
 import {program} from 'commander';
-import resetAll from './commadns/resetAll.js';
 import startWork from './commadns/startWork.js';
 import stopWork from './commadns/stopWork.js';
 import { getAll, getToday } from './commadns/workList.js';
+import { deleteTask, resetAll } from './utils/deletes.js';
 
 program
     .command('start <title>')
@@ -25,6 +25,11 @@ program
     .command('reset-all')
     .description('Clear all work logs')
     .action(resetAll);
+
+program
+    .command('delete <id>')
+    .description('Remove task, that you was working on. Due to his ID.')
+    .action(deleteTask);
 
 program
     .command('stop')
