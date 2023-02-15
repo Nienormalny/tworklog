@@ -4,7 +4,7 @@ import {program} from 'commander';
 import resetAll from './commadns/resetAll.js';
 import startWork from './commadns/startWork.js';
 import stopWork from './commadns/stopWork.js';
-import getList from './commadns/workList.js';
+import { getAll, getToday } from './commadns/workList.js';
 
 program
     .command('start <title>')
@@ -12,9 +12,14 @@ program
     .action(startWork);
 
 program
-    .command('show-work-log')
-    .description('Display table of your logged work.')
-    .action(getList);
+    .command('show-all')
+    .description('Display table with all tasks, that you logged.')
+    .action(getAll);
+
+program
+    .command('show-today')
+    .description('Display table with tasks, that you logged today.')
+    .action(getToday);
 
 program
     .command('reset-all')

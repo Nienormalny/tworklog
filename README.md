@@ -23,9 +23,10 @@ Simple small app that will start my task and end my task with possiblity to prin
 
 1. `twork start "Your task title or ticket number"` - this will start your "work", at this moment your work will be logged.
 2. `twork stop` - this command will stop your work and save it to the table with more details.
-3. `twork show-work-log` - this command will print table with all tasks, that you started.
+3. `twork show-all` - this command will print table with all tasks, that you started.
+4. `twork show-all` - this command will print table with tasks logged today.
 
-4. `twork reset-all` - this will remove all data from tables.
+5. `twork reset-all` - this will remove all data from tables.
 
 ## Feature updates
 
