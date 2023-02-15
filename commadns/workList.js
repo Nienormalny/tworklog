@@ -7,8 +7,8 @@ export const getAll = () => {
     const config = new Conf({projectName: 'tasker'});
     const workList = config.get('work-list');
     const table = new Table({
-        head: ['Title', 'Started at', 'Stopped at', 'Difference'],
-        colWidths: ['100', '100', '100', '100']
+        head: ['Id', 'Title', 'Started at', 'Stopped at', 'Difference'],
+        colWidths: ['50', '100', '100', '100', '100']
     });
     
     if (workList && workList.length) {
@@ -46,15 +46,17 @@ export const getAll = () => {
                  * Then under date row, let us add all tasks regarding to above mentioned date to the table as well.
                  */
                 if (index == 0) {
-                    table.push([{colSpan: 4, content: date, hAlign: "center"}]);
+                    table.push([{colSpan: 5, content: date, hAlign: "center"}]);
                 }
                 let summary = 0; // in seconds
                 works.forEach((task, i) => {
-                    table.push([task.title, task.started, task.stopped, task.difference]);
-                    summary += parseInt(hmsToSeconds(task.difference));
+                    if (task.done) {
+                        summary += parseInt(hmsToSeconds(task.difference));
+                    }
+                    table.push([task.id, task.title, task.started, task.stopped, task.difference]);
                     if (i === (works.length - 1)) {
                         const summatyObj = secondsToHms(summary);
-                        table.push([{colSpan: 3, content: 'Summary', hAlign: 'center'}, `${summatyObj.hours}:${summatyObj.minutes}:${summatyObj.seconds}`]);
+                        table.push([{colSpan: 4, content: 'Summary', hAlign: 'center'}, `${summatyObj.hours}:${summatyObj.minutes}:${summatyObj.seconds}`]);
                     };
                 })
             });
@@ -68,8 +70,8 @@ export const getToday = () => {
     const config = new Conf({projectName: 'tasker'});
     const workList = config.get('work-list');
     const table = new Table({
-        head: ['Title', 'Started at', 'Stopped at', 'Difference'],
-        colWidths: ['100', '100', '100', '100']
+        head: ['Id', 'Title', 'Started at', 'Stopped at', 'Difference'],
+        colWidths: ['50', '100', '100', '100', '100']
     });
 
     if (workList && workList.length) {
@@ -78,14 +80,16 @@ export const getToday = () => {
             const taskDate = new Date(task.createdAt).toLocaleDateString("de-DE");
             const currentDate = new Date().toLocaleDateString("de-DE");
             if (index === 0) {
-                table.push([{colSpan: 4, content: new Date().toLocaleDateString("de-DE"), hAlign: "center"}])
+                table.push([{colSpan: 5, content: new Date().toLocaleDateString("de-DE"), hAlign: "center"}])
             }
             if ( taskDate === currentDate) {
-                summary += parseInt(hmsToSeconds(task.difference));
-                table.push([task.title, task.started, task.stopped, task.difference]);
+                if (task.done) {
+                    summary += parseInt(hmsToSeconds(task.difference));
+                }
+                table.push([task.id, task.title, task.started, task.stopped, task.difference]);
                 if (index === (workList.length - 1)) {
                     const summatyObj = secondsToHms(summary);
-                    table.push([{colSpan: 3, content: 'Summary', hAlign: 'center'}, `${summatyObj.hours}:${summatyObj.minutes}:${summatyObj.seconds}`]);
+                    table.push([{colSpan: 4, content: 'Summary', hAlign: 'center'}, `${summatyObj.hours}:${summatyObj.minutes}:${summatyObj.seconds}`]);
                 };
             }
         });
