@@ -15,6 +15,7 @@ const stopWork = () => {
                 minute: "2-digit",
                 second: "2-digit",
             });
+            task.endedAt = new Date();
             let totalSeconds = secondsToHms(hmsToSeconds(task.stopped) - hmsToSeconds(task.started));
 
             task.difference = totalSeconds.hours + ':' + totalSeconds.minutes + ':' + totalSeconds.seconds;

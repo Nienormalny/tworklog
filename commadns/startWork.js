@@ -30,6 +30,7 @@ const startWork = (title) => {
             title,
             done: false,
             createdAt: new Date(),
+            endedAt: '-.-.-',
             started: new Date().toLocaleTimeString('de-DE', {
                 hour: '2-digit',
                 minute: '2-digit',
