@@ -45,7 +45,9 @@ export const getAll = () => {
                  * @description first let us add row with date to the table - when was all tasks created.
                  * Then under date row, let us add all tasks regarding to above mentioned date to the table as well.
                  */
-                if (index == 0) {
+                if (new Date(works[0].createdAt).toLocaleDateString('de-DE') !== new Date(works[0].endedAt).toLocaleDateString('de-DE')) {
+                    table.push([{colSpan: 5, content: `${new Date(works[0].createdAt).toLocaleDateString('de-DE')} / ${new Date(works[0].endedAt).toLocaleDateString('de-DE')}`, hAlign: "center"}]);
+                } else {
                     table.push([{colSpan: 5, content: date, hAlign: "center"}]);
                 }
                 let summary = 0; // in seconds
