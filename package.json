@@ -17,7 +17,9 @@
     "logger",
     "manager",
     "exel",
-    "worklog"
+    "csv",
+    "worklog",
+    "terminal"
   ],
   "author": "Nienormalny (Dawid Szadurski)",
   "license": "MIT",

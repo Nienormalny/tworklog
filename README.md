@@ -31,6 +31,6 @@ Simple small app that will start my task and end my task with possiblity to prin
 
 ## Feature updates
 
-- Export table to excel file
+- Export table to excel or csv file
 
 and more ...
